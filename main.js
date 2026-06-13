@@ -3,6 +3,45 @@
 
   new WOW().init();
 
+  // Theme Toggle - Light Mode / Dark Mode
+  function initThemeToggle() {
+    const themeToggle = document.getElementById("theme-toggle");
+    const htmlElement = document.documentElement;
+    const body = document.body;
+    
+    // Check for saved theme preference or default to dark mode
+    const currentTheme = localStorage.getItem("theme") || "dark";
+    
+    // Set initial theme
+    if (currentTheme === "light") {
+      body.classList.add("light-mode");
+      themeToggle.innerHTML = '<i class="ion-ios-moon"></i>';
+    } else {
+      body.classList.remove("light-mode");
+      themeToggle.innerHTML = '<i class="ion-ios-sunny"></i>';
+    }
+
+    // Toggle theme on click
+    themeToggle.addEventListener("click", function (e) {
+      e.preventDefault();
+      
+      if (body.classList.contains("light-mode")) {
+        // Switch to dark mode
+        body.classList.remove("light-mode");
+        localStorage.setItem("theme", "dark");
+        themeToggle.innerHTML = '<i class="ion-ios-sunny"></i>';
+      } else {
+        // Switch to light mode
+        body.classList.add("light-mode");
+        localStorage.setItem("theme", "light");
+        themeToggle.innerHTML = '<i class="ion-ios-moon"></i>';
+      }
+    });
+  }
+
+  // Initialize theme toggle when DOM is ready
+  document.addEventListener("DOMContentLoaded", initThemeToggle);
+
   //navbar cart
   $(".cart_link > a").on("click", function () {
     $(".mini_cart").addClass("active");
