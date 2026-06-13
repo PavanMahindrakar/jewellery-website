@@ -989,7 +989,13 @@ ul {
 }
 
 .header_bottom.sticky-header.sticky .logo_sticky {
+  display: block !important;
+}
+
+.header_bottom.sticky-header.sticky .logo_sticky a img {
   display: block;
+  max-width: 120px;
+  height: auto;
 }
 
 .header_black .header_bottom {
